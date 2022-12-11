@@ -1,9 +1,16 @@
-import { Text, View } from "react-native"
+import { Button, Text, View } from "react-native"
+import { useNavigation } from "@react-navigation/native"
 
-const landing = () =>{
+const Landing = () =>{
+    const navigation = useNavigation()
+
+    const OpenHome = () => {
+        navigation.navigate("Home")
+    }
     return <View>
-        <Text>landing</Text>
+        <Text >landing</Text>
+        <Button onPress={() => OpenHome()} title="Entrar"/>
     </View>
 }
 
-export default landing
+export default Landing

@@ -1,9 +1,9 @@
 import { Text, View } from "react-native"
 
-const home = () =>{
+const Home = () =>{
     return <View>
         <Text>home</Text>
     </View>
 }
 
-export default home
+export default Home
