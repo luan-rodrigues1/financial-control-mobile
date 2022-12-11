@@ -1,8 +1,9 @@
 import { Text, View } from "react-native"
+import TotalMoney from "../components/TotalMoney"
 
 const Home = () =>{
     return <View>
-        <Text>home</Text>
+        <TotalMoney/>
     </View>
 }
 
