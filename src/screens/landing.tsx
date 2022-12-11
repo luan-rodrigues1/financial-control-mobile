@@ -4,12 +4,9 @@ import { useNavigation } from "@react-navigation/native"
 const Landing = () =>{
     const navigation = useNavigation()
 
-    const OpenHome = () => {
-        navigation.navigate("Home")
-    }
     return <View>
         <Text >landing</Text>
-        <Button onPress={() => OpenHome()} title="Entrar"/>
+        <Button onPress={() => navigation.navigate("Home")} title="Entrar"/>
     </View>
 }
 
