@@ -7,7 +7,7 @@ const TotalMoney = () =>{
         <Text>Saldo Atual</Text>
         <Text >R$ {balanceVisibility ? "..." : "2.000,00"}</Text>
         <Button onPress={() => visibilitySwitch()} title="trocar"/>
-        <Image style={styles.imagem} source={require('../../assets/visibilityoff.png')}/>
+        
     </View>
 }
 
