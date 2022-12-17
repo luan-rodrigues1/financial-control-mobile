@@ -1,14 +1,19 @@
-import { Text, View } from "react-native"
+import {View } from "react-native"
 import TotalMoney from "../components/TotalMoney"
-import Form from "../components/Form"
-import CardList from "../components/List"
+import FormModal from "../components/FormModal"
+import CardList from "../components/CardList"
+import DeleteModal from "../components/DeleteModal"
 
 const Home = () =>{
-    return <View>
-        <TotalMoney/>
-        <Form/>
-        <CardList/>
-    </View>
+    return (
+        <View>
+            <TotalMoney/>
+            <FormModal/>
+            <CardList/>
+            <DeleteModal/>
+        </View>
+    )
+
 }
 
 export default Home
