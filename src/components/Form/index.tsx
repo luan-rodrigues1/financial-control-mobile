@@ -24,7 +24,8 @@ const Form = () => {
                 <Button  onPress={() => setListTransaction([...listTransaction, {
                     description: transactionDescription,
                     value: transactionvalue,
-                    Type: transactionType
+                    Type: transactionType,
+                    id: new Date().getTime()
                 }])} title="Adicionar"/>
             </View>
 }

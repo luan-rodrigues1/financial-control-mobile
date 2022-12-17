@@ -6,6 +6,7 @@ export interface ITransaction {
     description: string;
     value: string;
     Type: string;
+    id: number
 }
 export interface IProfileContext {
     balanceVisibility: boolean;

@@ -5,9 +5,9 @@ const TotalMoney = () =>{
     const {balanceVisibility, visibilitySwitch} = useContext(UserContext)
     return <View> 
         <Text>Saldo Atual</Text>
-        <Text >R$ {balanceVisibility ? "..." : "2.000,00"}</Text>
+        <Text >R$ {balanceVisibility ? "...." : "2.000,00"}</Text>
         <Button onPress={() => visibilitySwitch()} title="trocar"/>
-        
+        <Image  source={require("../../../assets/visibilityoff.png")}/>
     </View>
 }
 
