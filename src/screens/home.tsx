@@ -4,6 +4,7 @@ import FormModal from "../components/FormModal"
 import CardList from "../components/CardList"
 import DeleteModal from "../components/DeleteModal"
 import TransactionFilter from "../components/TransactionFilter"
+import NoTransactions from "../components/NoTransactions"
 
 const Home = () =>{
     return (

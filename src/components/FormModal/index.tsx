@@ -1,4 +1,3 @@
-import { useState } from "react"
 import { Button, Modal, Text, TextInput, View } from "react-native"
 import { useContext } from "react"
 import { UserContext } from "../../contexts/UserContext"
