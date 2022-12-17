@@ -27,6 +27,12 @@ export interface IProfileContext {
     setTransactionValue: React.Dispatch<React.SetStateAction<string>>
     formVisibility: boolean
     setFormVisibility: React.Dispatch<React.SetStateAction<boolean>>
+    listFiltred: ITransaction[] | []
+    setListFiltred: React.Dispatch<React.SetStateAction<ITransaction[] | []>>
+    usingFilter: boolean
+    setUsingFilter: React.Dispatch<React.SetStateAction<boolean>>
+    typeFilterSwitch: (id: string) => void
+
 }
 
 export const UserContext = createContext<IProfileContext>({} as IProfileContext)
@@ -40,6 +46,8 @@ const UserProvider = ({children}:IProfileContextProps) => {
     const [transactionType, setTransactionType] = useState<string>("Entrada")
     const [transactionDescription, setTransactionDescription] = useState<string>("")
     const [transactionvalue, setTransactionValue] = useState<string>("")
+    const [listFiltred, setListFiltred] = useState<ITransaction[] | []>([])
+    const [usingFilter, setUsingFilter] = useState<boolean>(false)
 
     const visibilitySwitch = () =>{
         if(balanceVisibility){
@@ -53,6 +61,11 @@ const UserProvider = ({children}:IProfileContextProps) => {
         const deleteItem = listTransaction.filter(element => element.id !== id)
 
         return setListTransaction(deleteItem)
+    }
+
+    const typeFilterSwitch = (type: string) =>{
+        const listFiltred = listTransaction.filter(element => element.type === type)
+        return setListFiltred(listFiltred)
     }
 
     return <UserContext.Provider 
@@ -73,7 +86,12 @@ const UserProvider = ({children}:IProfileContextProps) => {
         transactionvalue,
         setTransactionValue,
         formVisibility,
-        setFormVisibility
+        setFormVisibility,
+        listFiltred,
+        setListFiltred,
+        usingFilter,
+        setUsingFilter,
+        typeFilterSwitch
     }}>{children}</UserContext.Provider>
 
 }

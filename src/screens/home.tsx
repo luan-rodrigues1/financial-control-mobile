@@ -3,11 +3,13 @@ import TotalMoney from "../components/TotalMoney"
 import FormModal from "../components/FormModal"
 import CardList from "../components/CardList"
 import DeleteModal from "../components/DeleteModal"
+import TransactionFilter from "../components/TransactionFilter"
 
 const Home = () =>{
     return (
         <View>
             <TotalMoney/>
+            <TransactionFilter/>
             <FormModal/>
             <CardList/>
             <DeleteModal/>
