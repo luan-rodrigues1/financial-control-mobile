@@ -58,8 +58,13 @@ const UserProvider = ({children}:IProfileContextProps) => {
     }
 
     const deleteTransaction = (id: number | null) => {
-        const deleteItem = listTransaction.filter(element => element.id !== id)
+        if(usingFilter){
+            const listFiltredDeleteItem = listFiltred.filter(element => element.id !== id)
 
+            setListFiltred(listFiltredDeleteItem)
+        }
+        const deleteItem = listTransaction.filter(element => element.id !== id)
+        
         return setListTransaction(deleteItem)
     }
 
