@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 interface IProfileContextProps {
     children: React.ReactNode;
 }
@@ -32,6 +32,7 @@ export interface IProfileContext {
     usingFilter: boolean
     setUsingFilter: React.Dispatch<React.SetStateAction<boolean>>
     typeFilterSwitch: (id: string) => void
+    balanceValueTotal: string
 
 }
 
@@ -48,6 +49,7 @@ const UserProvider = ({children}:IProfileContextProps) => {
     const [transactionvalue, setTransactionValue] = useState<string>("")
     const [listFiltred, setListFiltred] = useState<ITransaction[] | []>([])
     const [usingFilter, setUsingFilter] = useState<boolean>(false)
+    const [balanceValueTotal, setBalanceValueTotal] = useState<string>("")
 
     const visibilitySwitch = () =>{
         if(balanceVisibility){
@@ -73,6 +75,22 @@ const UserProvider = ({children}:IProfileContextProps) => {
         return setListFiltred(listFiltred)
     }
 
+    useEffect(() => {
+        const expenseFilter = listTransaction.filter(element => element.type === "Despesa").reduce((previous, later) => {
+            return parseInt(later.value) + previous
+        }, 0)
+
+        const EntriesFilter = listTransaction.filter(element => element.type === "Entrada").reduce((previous, later) => {
+            return parseInt(later.value) + previous
+        }, 0)
+
+        const total = EntriesFilter - expenseFilter
+
+    
+        return setBalanceValueTotal(total.toString())
+    }, [listTransaction])
+
+
     return <UserContext.Provider 
     value={{balanceVisibility, 
         setBalanceVisibility, 
@@ -96,7 +114,8 @@ const UserProvider = ({children}:IProfileContextProps) => {
         setListFiltred,
         usingFilter,
         setUsingFilter,
-        typeFilterSwitch
+        typeFilterSwitch,
+        balanceValueTotal
     }}>{children}</UserContext.Provider>
 
 }

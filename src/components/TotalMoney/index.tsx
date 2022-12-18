@@ -1,31 +1,37 @@
 import { Image, Text, View, StyleSheet, Button, TouchableOpacity } from "react-native"
-import { useContext } from "react"
+import { useContext, useState } from "react"
 import { UserContext } from "../../contexts/UserContext"
+import styles from "./style"
 const TotalMoney = () =>{
     const {balanceVisibility, 
         visibilitySwitch, 
         setTransactionType, 
         setTransactionDescription, 
         setTransactionValue,
-        setFormVisibility
+        setFormVisibility,
+        balanceValueTotal
     } = useContext(UserContext)
-        
+
+    
+    
+    console.log(balanceValueTotal)
     return (
-        <View> 
-            <Text>Saldo Atual</Text>
-            <Text >R$ {balanceVisibility ? "...." : "2.000,00"}</Text>
+        <View style={styles.balanceBox}> 
+            <Text style={styles.balanceTotal}>Saldo Atual</Text>
+            <Text style={styles.balanceValue}>R$ {balanceVisibility ? "...." : parseFloat(balanceValueTotal).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</Text>
             <TouchableOpacity
                 onPress={() => visibilitySwitch()}>
                 <Image  source={require("../../../assets/visibilityoff.png")}/>
             </TouchableOpacity>
-            <Button 
+            <TouchableOpacity
+                style={styles.ButtonAdd}
                 onPress={() => {
                     setFormVisibility(true), 
                     setTransactionType("Entrada"),
                     setTransactionDescription(""), 
-                    setTransactionValue("")}} 
-                    title="Adicionar"
-            />
+                    setTransactionValue("")}}>
+                        <Text style={styles.textButtonAdd}>Adicionar</Text>
+            </TouchableOpacity>
         </View>
     )
 }
