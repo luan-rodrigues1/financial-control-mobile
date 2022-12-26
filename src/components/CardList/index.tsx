@@ -2,36 +2,48 @@ import { useContext } from "react"
 import { FlatList, Image, StyleSheet, Text, TouchableOpacity, View } from "react-native"
 import { UserContext } from "../../contexts/UserContext"
 import NoTransactions from "../NoTransactions"
+import styles from "./style"
 
 const CardList = () =>{
-    const {listTransaction, setDeleteModalVisibility, setdeleteId, usingFilter, listFiltred} = useContext(UserContext)
+    const {listTransaction, setDeleteModalVisibility, setdeleteId, usingFilter, listFiltred, setFormVisibility, setTransactionType, setTransactionDescription, setTransactionValue} = useContext(UserContext)
 
    return (
-        <View>
+        <View style={styles.cardListContainer}>
             {!usingFilter && listTransaction[0] === undefined || usingFilter === true && listFiltred[0] === undefined ? <NoTransactions/> : 
             <FlatList
-            data={!usingFilter ? listTransaction : listFiltred}
+            data={!usingFilter ? listTransaction.slice().reverse() : listFiltred.slice().reverse()}
             renderItem={({item}) =>{
                     return (
-                    <View>
-                        <Image source={item.type === "Despesa" ? require("../../../assets/arrowDown.png") : require("../../../assets/arrowGreen.png")}/>
-                        <Text>{item.description}</Text>
-                        <Text>{item.value}</Text>
-                        <Text>{item.type}</Text>
+                    <View style={styles.listContainer}>
+                        <View style={styles.cardBox}>
+                            <Image source={item.type === "Despesa" ? require("../../../assets/arrowDown.png") : require("../../../assets/arrowGreen.png")}/>
+                            <View>
+                                <Text style={styles.textCard}>{item.description}</Text>
+                                <Text style={item.type === "Despesa" ? styles.textValueExpense : styles.textValue}>R$ {item.value}</Text>
+                            </View>
+                        </View>
                         <TouchableOpacity
-                        onPress={()=> {
-                            setdeleteId(item.id),
-                            setDeleteModalVisibility(true)
-                        }}
-                        >
+                        style={styles.trashButton}
+                            onPress={()=> {
+                                setdeleteId(item.id),
+                                setDeleteModalVisibility(true)
+                            }}>
                             <Image source={require("../../../assets/trash.png")}/>
                         </TouchableOpacity>
                     </View>
                 )
-                
             }}
             >
             </FlatList>}
+            <TouchableOpacity
+                style={[styles.ButtonAdd, styles.shadowProp]}
+                onPress={() => {
+                setFormVisibility(true), 
+                setTransactionType("Entrada"),
+                setTransactionDescription(""), 
+                setTransactionValue("")}}>
+                    <Text style={styles.textButtonAdd}>Adicionar</Text>
+            </TouchableOpacity>
         </View>
     )
 

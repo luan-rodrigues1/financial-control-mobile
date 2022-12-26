@@ -1,6 +1,7 @@
-import { Button, Modal, Text, TextInput, View } from "react-native"
+import { Button, Modal, Text, TextInput, Touchable, TouchableOpacity, View } from "react-native"
 import { useContext } from "react"
 import { UserContext } from "../../contexts/UserContext"
+import styles from "./style"
 
 
 const FormModal = () => {
@@ -24,21 +25,38 @@ const FormModal = () => {
                 transparent={true}
                 visible={formVisibility}
             >
-                <Text>Adicione sua transação</Text>
-                <Button onPress={() => setFormVisibility(false)} title="X"/>
-                <Text>Descrição</Text>
-                <TextInput value={transactionDescription} onChangeText={setTransactionDescription} placeholder="Digite aqui..."/>
-                <TextInput value={transactionvalue} onChangeText={setTransactionValue} placeholder="Ex: 100,00" keyboardType="numeric"/>
-                <Text>Tipo</Text>
-                <Button onPress={() => setTransactionType("Entrada")} title="Entrada"/>
-                <Button onPress={() => setTransactionType("Despesa")} title="Despesa"/>
-                <Button  onPress={() => {setListTransaction([...listTransaction, {
-                    description: transactionDescription,
-                    value: transactionvalue,
-                    type: transactionType,
-                    id: new Date().getTime()
-                    }]), 
-                    setFormVisibility(false)}} title="Adicionar"/>
+                <View style={styles.modalForm}>
+                    <View style={styles.headerForm}>
+                        <Text style={styles.headerText}>Adicione sua transação</Text>
+                        <TouchableOpacity style={styles.buttonExit} onPress={() => setFormVisibility(false)}><Text style={styles.buttonExitText}>X</Text></TouchableOpacity>
+                    </View>
+                    <Text style={styles.LabelText}>Descrição</Text>
+                    <TextInput style={styles.inputBox} value={transactionDescription} onChangeText={setTransactionDescription} placeholder="Digite aqui..."/>
+                    <Text style={styles.LabelText}>Valor</Text>
+                    <TextInput style={styles.inputBox} value={transactionvalue} onChangeText={setTransactionValue} placeholder="Ex: 100,00" keyboardType="numeric"/>
+                    <View style={styles.TypeBox}>
+                        <Text style={styles.LabelText}>Tipo</Text>
+                    </View>
+                    <View style={styles.typeBoxButton}>
+                        <TouchableOpacity style={styles.inputType} onPress={() => setTransactionType("Entrada")}>
+                            <Text style={styles.LabelText}>Entrada</Text>
+                            <View style={styles.typeBall}/>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles.inputType} onPress={() => setTransactionType("Despesa")}>
+                            <Text style={styles.LabelText}>Despesa</Text>
+                            <View style={styles.typeBall}/>
+                        </TouchableOpacity>
+                    </View>
+                    <TouchableOpacity style={styles.ButtonAddForm} onPress={() => {setListTransaction([...listTransaction, {
+                        description: transactionDescription,
+                        value: transactionvalue,
+                        type: transactionType,
+                        id: new Date().getTime()
+                        }]), 
+                        setFormVisibility(false)}}>
+                            <Text style={styles.textButtonAdd}>Adicionar</Text>
+                    </TouchableOpacity>
+                </View>
             </Modal>
         </View>
     )

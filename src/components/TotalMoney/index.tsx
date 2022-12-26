@@ -4,17 +4,10 @@ import { UserContext } from "../../contexts/UserContext"
 import styles from "./style"
 const TotalMoney = () =>{
     const {balanceVisibility, 
-        visibilitySwitch, 
-        setTransactionType, 
-        setTransactionDescription, 
-        setTransactionValue,
-        setFormVisibility,
+        visibilitySwitch,
         balanceValueTotal
     } = useContext(UserContext)
-
     
-    
-    console.log(balanceValueTotal)
     return (
         <View style={styles.balanceBox}> 
             <Text style={styles.balanceTotal}>Saldo Atual</Text>
@@ -22,15 +15,6 @@ const TotalMoney = () =>{
             <TouchableOpacity
                 onPress={() => visibilitySwitch()}>
                 <Image  source={require("../../../assets/visibilityoff.png")}/>
-            </TouchableOpacity>
-            <TouchableOpacity
-                style={styles.ButtonAdd}
-                onPress={() => {
-                    setFormVisibility(true), 
-                    setTransactionType("Entrada"),
-                    setTransactionDescription(""), 
-                    setTransactionValue("")}}>
-                        <Text style={styles.textButtonAdd}>Adicionar</Text>
             </TouchableOpacity>
         </View>
     )
