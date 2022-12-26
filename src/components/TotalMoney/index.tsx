@@ -14,7 +14,8 @@ const TotalMoney = () =>{
             <Text style={styles.balanceValue}>R$ {balanceVisibility ? "...." : parseFloat(balanceValueTotal).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</Text>
             <TouchableOpacity
                 onPress={() => visibilitySwitch()}>
-                <Image  source={require("../../../assets/visibilityoff.png")}/>
+                    <Image  source={balanceVisibility ? require("../../../assets/visibility.png") : require("../../../assets/visibilityoff.png")}/>
+                {/* <Image  source={require("../../../assets/visibilityoff.png")}/> */}
             </TouchableOpacity>
         </View>
     )
