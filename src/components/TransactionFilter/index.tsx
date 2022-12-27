@@ -14,7 +14,7 @@ const TransactionFilter = () =>{
                     style={filterActivated === "Todos" ? styles.buttonFilterActivated : styles.buttonFilter}
                     onPress={() => {setUsingFilter(false), setFilterActivated("Todos")}}>
                         <View>
-                            <Image source={require("../../../assets/arrowGreen.png")}/>
+                            <Image source={require("../../../assets/twoarrow1.png")}/>
                         </View>
                 </TouchableOpacity>
                 <Text style={filterActivated === "Todos" ? styles.textFilterActivated : styles.textFilter}>Todos</Text>
