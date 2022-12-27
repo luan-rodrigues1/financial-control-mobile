@@ -15,7 +15,6 @@ const TotalMoney = () =>{
             <TouchableOpacity
                 onPress={() => visibilitySwitch()}>
                     <Image  source={balanceVisibility ? require("../../../assets/visibility.png") : require("../../../assets/visibilityoff.png")}/>
-                {/* <Image  source={require("../../../assets/visibilityoff.png")}/> */}
             </TouchableOpacity>
         </View>
     )

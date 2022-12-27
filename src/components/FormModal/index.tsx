@@ -38,13 +38,13 @@ const FormModal = () => {
                         <Text style={styles.LabelText}>Tipo</Text>
                     </View>
                     <View style={styles.typeBoxButton}>
-                        <TouchableOpacity style={styles.inputType} onPress={() => setTransactionType("Entrada")}>
-                            <Text style={styles.LabelText}>Entrada</Text>
-                            <View style={styles.typeBall}/>
+                        <TouchableOpacity style={transactionType === "Entrada" ? styles.inputTypeActivated : styles.inputType} onPress={() => setTransactionType("Entrada")}>
+                            <Text style={transactionType === "Entrada" ? styles.LabelTextTypeActivated : styles.LabelTextType}>Entrada</Text>
+                            <View style={transactionType === "Entrada" ? styles.typeBallActivated : styles.typeBall}/>
                         </TouchableOpacity>
-                        <TouchableOpacity style={styles.inputType} onPress={() => setTransactionType("Despesa")}>
-                            <Text style={styles.LabelText}>Despesa</Text>
-                            <View style={styles.typeBall}/>
+                        <TouchableOpacity style={transactionType !== "Entrada" ? styles.inputTypeActivated : styles.inputType} onPress={() => setTransactionType("Despesa")}>
+                            <Text style={transactionType !== "Entrada" ? styles.LabelTextTypeActivated : styles.LabelTextType}>Despesa</Text>
+                            <View style={transactionType !== "Entrada" ? styles.typeBallActivated : styles.typeBall}/>
                         </TouchableOpacity>
                     </View>
                     <TouchableOpacity style={styles.ButtonAddForm} onPress={() => {setListTransaction([...listTransaction, {

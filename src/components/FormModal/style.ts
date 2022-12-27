@@ -35,7 +35,19 @@ const styles = StyleSheet.create({
 
     LabelText: {
         fontSize: 16,
-        marginBottom: 3
+        marginBottom: 3,
+    },
+
+    LabelTextType: {
+        fontSize: 16,
+        marginBottom: 3,
+        color: "#707173"
+    },
+
+    LabelTextTypeActivated: {
+        fontSize: 16,
+        marginBottom: 3,
+        color: "#2C8CF4"
     },
 
     inputBox: {
@@ -65,7 +77,18 @@ const styles = StyleSheet.create({
     inputType: {
         width: 140,
         height: 60,
-        borderWidth: 1,
+        borderWidth: 1.5,
+        borderColor: "#b0b1b3",
+        borderRadius: 12,
+        justifyContent: "center",
+        alignItems: "center"
+    },
+
+    inputTypeActivated: {
+        width: 140,
+        height: 60,
+        borderWidth: 1.5,
+        borderColor: "#2C8CF4",
         borderRadius: 12,
         justifyContent: "center",
         alignItems: "center"
@@ -93,6 +116,18 @@ const styles = StyleSheet.create({
         height: 8,
         borderRadius: 50,
         borderWidth:2,
+        borderColor: "#b0b1b3",
+        position: "absolute",
+        left: "85%",
+        top: "15%"
+    },
+
+    typeBallActivated: {
+        width: 8,
+        height: 8,
+        borderRadius: 50,
+        borderWidth:2,
+        borderColor: "#2C8CF4",
         position: "absolute",
         left: "85%",
         top: "15%"

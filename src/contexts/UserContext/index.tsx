@@ -33,6 +33,8 @@ export interface IProfileContext {
     setUsingFilter: React.Dispatch<React.SetStateAction<boolean>>
     typeFilterSwitch: (id: string) => void
     balanceValueTotal: string
+    filterActivated: string
+    setFilterActivated: React.Dispatch<React.SetStateAction<string>>
 
 }
 
@@ -50,6 +52,7 @@ const UserProvider = ({children}:IProfileContextProps) => {
     const [listFiltred, setListFiltred] = useState<ITransaction[] | []>([])
     const [usingFilter, setUsingFilter] = useState<boolean>(false)
     const [balanceValueTotal, setBalanceValueTotal] = useState<string>("")
+    const [filterActivated, setFilterActivated] = useState<string>("Todos")
 
     const visibilitySwitch = () =>{
         if(balanceVisibility){
@@ -115,7 +118,9 @@ const UserProvider = ({children}:IProfileContextProps) => {
         usingFilter,
         setUsingFilter,
         typeFilterSwitch,
-        balanceValueTotal
+        balanceValueTotal,
+        filterActivated,
+        setFilterActivated
     }}>{children}</UserContext.Provider>
 
 }

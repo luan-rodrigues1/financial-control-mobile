@@ -18,13 +18,34 @@ const styles = StyleSheet.create({
     buttonFilter: {
         alignItems: "center",
         justifyContent: "center",
-        borderWidth: 1,
-        borderColor: "#000000",
+        borderWidth: 1.5,
+        borderColor: "#b0b1b3",
         width: 50,
         height: 50,
         borderRadius: 15,
         backgroundColor: "#ffffff"
+    },
+
+    buttonFilterActivated: {
+        alignItems: "center",
+        justifyContent: "center",
+        borderWidth: 1.5,
+        borderColor: "#2C8CF4",
+        width: 50,
+        height: 50,
+        borderRadius: 15,
+        backgroundColor: "#ffffff"
+    },
+
+    textFilter: {
+        fontSize: 12,
+    },
+
+    textFilterActivated: {
+        fontSize: 12,
+        color: "#2C8CF4"
     }
+
 
 
 })
