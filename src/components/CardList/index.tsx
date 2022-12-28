@@ -1,4 +1,4 @@
-import { useContext, useState } from "react"
+import { ReactNode, useContext, useState } from "react"
 import { FlatList, Image, StyleSheet, Text, TouchableOpacity, View } from "react-native"
 import { UserContext } from "../../contexts/UserContext"
 import NoTransactions from "../NoTransactions"
@@ -15,7 +15,9 @@ const CardList = () =>{
         setTransactionDescription, 
         setTransactionValue, 
         setErrorDescription, 
-        setErrorValue
+        setErrorValue,
+        formattingCurrency,
+        setErrorValueFormat
     } = useContext(UserContext)
 
    return (
@@ -30,7 +32,7 @@ const CardList = () =>{
                             <Image source={item.type === "Despesa" ? require("../../../assets/arrowDown.png") : require("../../../assets/arrowGreen.png")}/>
                             <View>
                                 <Text style={styles.textCard}>{item.description}</Text>
-                                <Text style={item.type === "Despesa" ? styles.textValueExpense : styles.textValue}>R$ {item.value}</Text>
+                                <Text style={item.type === "Despesa" ? styles.textValueExpense : styles.textValue}>R$ {formattingCurrency(parseFloat(item.value)) as ReactNode}</Text>
                             </View>
                         </View>
                         <TouchableOpacity
@@ -53,8 +55,9 @@ const CardList = () =>{
                 setTransactionType("Entrada"),
                 setTransactionDescription(""), 
                 setTransactionValue(""),
-                setErrorDescription(false),
-                setErrorValue(false)}}>
+                setErrorDescription(""),
+                setErrorValue(""),
+                setErrorValueFormat("")}}>
                     <Text style={styles.textButtonAdd}>Adicionar</Text>
             </TouchableOpacity>
         </View>

@@ -5,8 +5,7 @@ import styles from "./style"
 
 
 const FormModal = () => {
-    const {listTransaction, 
-        setListTransaction,
+    const {
         transactionType, 
         setTransactionType,
         transactionDescription,
@@ -17,7 +16,8 @@ const FormModal = () => {
         setFormVisibility,
         transactionValidation,
         errorDescription,
-        errorValue
+        errorValue,
+        errorValueFormat
     } = useContext(UserContext)
     
     
@@ -34,11 +34,11 @@ const FormModal = () => {
                         <TouchableOpacity style={styles.buttonExit} onPress={() => setFormVisibility(false)}><Text style={styles.buttonExitText}>X</Text></TouchableOpacity>
                     </View>
                     <Text style={styles.LabelText}>Descrição</Text>
-                    <TextInput style={styles.inputBox} value={transactionDescription} onChangeText={setTransactionDescription} placeholder="Digite aqui..."/>
-                    <Text style={errorDescription ? styles.errorMessage : styles.invisible}>Campo obrigatório</Text>
+                    <TextInput maxLength={38} style={errorDescription !== "" ? styles.inputBoxError : styles.inputBox} value={transactionDescription} onChangeText={setTransactionDescription} placeholder="Digite aqui..."/>
+                    <Text style={errorDescription !== "" ? styles.errorMessage : styles.invisible}>{errorDescription}</Text>
                     <Text style={styles.LabelText}>Valor</Text>
-                    <TextInput style={styles.inputBox} value={transactionvalue} onChangeText={setTransactionValue} placeholder="Ex: 100,00" keyboardType="numeric"/>
-                    <Text style={errorValue ? styles.errorMessage : styles.invisible}>Campo obrigatório</Text>
+                    <TextInput style={errorValue !== "" ? styles.inputBoxError : styles.inputBox} value={transactionvalue} onChangeText={setTransactionValue} placeholder="Ex: 100,00" keyboardType="numeric"/>
+                    <Text style={errorValue !== "" || errorValueFormat !== ""? styles.errorMessage : styles.invisible}>{errorValue !== ""? errorValue : errorValueFormat}</Text>
                     <View style={styles.TypeBox}>
                         <Text style={styles.LabelText}>Tipo</Text>
                     </View>

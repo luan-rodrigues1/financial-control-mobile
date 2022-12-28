@@ -30,7 +30,8 @@ const styles = StyleSheet.create({
 
     textCard: {
         fontSize: 15,
-        marginLeft: 10
+        marginLeft: 10,
+        width: 200
     },
 
     textValue: {

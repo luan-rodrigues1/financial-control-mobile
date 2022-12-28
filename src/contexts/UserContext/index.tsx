@@ -32,15 +32,17 @@ export interface IProfileContext {
     usingFilter: boolean
     setUsingFilter: React.Dispatch<React.SetStateAction<boolean>>
     typeFilterSwitch: (id: string) => void
-    balanceValueTotal: number
+    balanceValueTotal: number | string
     filterActivated: string
     setFilterActivated: React.Dispatch<React.SetStateAction<string>>
     transactionValidation: (newTransaction: ITransaction) => void
-    errorDescription: boolean
-    setErrorDescription: React.Dispatch<React.SetStateAction<boolean>>
-    errorValue: boolean
-    setErrorValue: React.Dispatch<React.SetStateAction<boolean>>
-
+    errorDescription: string
+    setErrorDescription: React.Dispatch<React.SetStateAction<string>>
+    errorValue: string
+    setErrorValue: React.Dispatch<React.SetStateAction<string>>
+    formattingCurrency: (value: number) => void
+    errorValueFormat: string
+    setErrorValueFormat: React.Dispatch<React.SetStateAction<string>>
 }
 
 export const UserContext = createContext<IProfileContext>({} as IProfileContext)
@@ -56,10 +58,11 @@ const UserProvider = ({children}:IProfileContextProps) => {
     const [transactionvalue, setTransactionValue] = useState<string>("")
     const [listFiltred, setListFiltred] = useState<ITransaction[] | []>([])
     const [usingFilter, setUsingFilter] = useState<boolean>(false)
-    const [balanceValueTotal, setBalanceValueTotal] = useState<number>(0)
+    const [balanceValueTotal, setBalanceValueTotal] = useState<number | string>(0)
     const [filterActivated, setFilterActivated] = useState<string>("Todos")
-    const [errorDescription, setErrorDescription] = useState<boolean>(false)
-    const [errorValue, setErrorValue] = useState<boolean>(false)
+    const [errorDescription, setErrorDescription] = useState<string>("")
+    const [errorValue, setErrorValue] = useState<string>("")
+    const [errorValueFormat, setErrorValueFormat ] = useState<string>("")
 
     const visibilitySwitch = () =>{
         if(balanceVisibility){
@@ -70,18 +73,41 @@ const UserProvider = ({children}:IProfileContextProps) => {
     }
 
     const transactionValidation = (newTransaction: ITransaction) => {
+        setErrorValue("")
+        setErrorDescription("")
+        setErrorValueFormat("")
+
+        const filterPoint = newTransaction.value.split("").filter(el => el === ",")
 
         if(newTransaction.value.trim() === "" && newTransaction.description.trim() === ""){
-            return (setErrorValue(true), setErrorDescription(true))
+            return (setErrorDescription("Campo obrigatório"), setErrorValue("Campo obrigatório"))
+        }
+
+        if(newTransaction.description.trim() === "" && newTransaction.value.includes(".") || filterPoint.length > 1){
+            return (setErrorDescription("Campo obrigatório"), setErrorValueFormat("Formato incorreto Ex: 1000,50"))
+        }
+
+        if(newTransaction.value.trim() === "" && newTransaction.value.includes(".") || filterPoint.length > 1){
+            return (setErrorValue("Campo obrigatório"), setErrorValueFormat("Formato incorreto Ex: 1000,50"))
         }
 
         if(newTransaction.description.trim() === ""){
-            return setErrorDescription(true)
+            return setErrorDescription("Campo obrigatório")
         }
+        
 
         if(newTransaction.value.trim() === ""){
-            return setErrorValue(true)
+            return setErrorValue("Campo obrigatório")
         }
+        
+
+        if(newTransaction.value.includes(".") || filterPoint.length > 1){
+            return setErrorValueFormat("Formato incorreto Ex: 1000,50")
+        }
+
+        const shiftPoint = newTransaction.value.replace(",", ".")
+
+        newTransaction.value = shiftPoint
 
         return (setListTransaction(
             [...listTransaction, newTransaction]), 
@@ -105,6 +131,13 @@ const UserProvider = ({children}:IProfileContextProps) => {
         return setListFiltred(listFiltred)
     }
 
+    const formattingCurrency = (value: number ): string => {
+
+        const [currency, cents] = value.toFixed(2).toString().split('.');
+
+        return `${currency.replace(/\B(?=(\d{3})+(?!\d))/g, '.')},${cents}`
+    }
+
     useEffect(() => {
         const expenseFilter = listTransaction.filter(element => element.type === "Despesa").reduce((previous, later) => {
             return parseFloat(later.value) + previous
@@ -115,8 +148,10 @@ const UserProvider = ({children}:IProfileContextProps) => {
         }, 0)
 
         const totalBalance = EntriesFilter - expenseFilter
+
+        const fullyFormatted = formattingCurrency(totalBalance)
         
-        return setBalanceValueTotal(totalBalance)
+        return setBalanceValueTotal(fullyFormatted)
 
     }, [listTransaction])
 
@@ -152,7 +187,10 @@ const UserProvider = ({children}:IProfileContextProps) => {
         errorDescription,
         setErrorDescription,
         errorValue,
-        setErrorValue
+        setErrorValue,
+        formattingCurrency,
+        errorValueFormat,
+        setErrorValueFormat
     }}>{children}</UserContext.Provider>
 
 }

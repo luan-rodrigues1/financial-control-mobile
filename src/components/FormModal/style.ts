@@ -59,6 +59,16 @@ const styles = StyleSheet.create({
         paddingLeft: 8 
     },
 
+    inputBoxError: {
+        width: "100%",
+        height: 45,
+        borderWidth: 1,
+        borderColor: "#ff0000",
+        borderRadius: 13,
+        marginBottom: 10,
+        paddingLeft: 8 
+    },
+
     TypeBox: {
         marginTop: 5,
         marginBottom: 5,
