@@ -1,11 +1,22 @@
-import { useContext } from "react"
+import { useContext, useState } from "react"
 import { FlatList, Image, StyleSheet, Text, TouchableOpacity, View } from "react-native"
 import { UserContext } from "../../contexts/UserContext"
 import NoTransactions from "../NoTransactions"
 import styles from "./style"
 
 const CardList = () =>{
-    const {listTransaction, setDeleteModalVisibility, setdeleteId, usingFilter, listFiltred, setFormVisibility, setTransactionType, setTransactionDescription, setTransactionValue} = useContext(UserContext)
+    const {listTransaction, 
+        setDeleteModalVisibility, 
+        setdeleteId, 
+        usingFilter, 
+        listFiltred, 
+        setFormVisibility, 
+        setTransactionType, 
+        setTransactionDescription, 
+        setTransactionValue, 
+        setErrorDescription, 
+        setErrorValue
+    } = useContext(UserContext)
 
    return (
         <View style={styles.cardListContainer}>
@@ -41,7 +52,9 @@ const CardList = () =>{
                 setFormVisibility(true), 
                 setTransactionType("Entrada"),
                 setTransactionDescription(""), 
-                setTransactionValue("")}}>
+                setTransactionValue(""),
+                setErrorDescription(false),
+                setErrorValue(false)}}>
                     <Text style={styles.textButtonAdd}>Adicionar</Text>
             </TouchableOpacity>
         </View>

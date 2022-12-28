@@ -14,7 +14,10 @@ const FormModal = () => {
         transactionvalue,
         setTransactionValue,
         formVisibility,
-        setFormVisibility
+        setFormVisibility,
+        transactionValidation,
+        errorDescription,
+        errorValue
     } = useContext(UserContext)
     
     
@@ -32,8 +35,10 @@ const FormModal = () => {
                     </View>
                     <Text style={styles.LabelText}>Descrição</Text>
                     <TextInput style={styles.inputBox} value={transactionDescription} onChangeText={setTransactionDescription} placeholder="Digite aqui..."/>
+                    <Text style={errorDescription ? styles.errorMessage : styles.invisible}>Campo obrigatório</Text>
                     <Text style={styles.LabelText}>Valor</Text>
                     <TextInput style={styles.inputBox} value={transactionvalue} onChangeText={setTransactionValue} placeholder="Ex: 100,00" keyboardType="numeric"/>
+                    <Text style={errorValue ? styles.errorMessage : styles.invisible}>Campo obrigatório</Text>
                     <View style={styles.TypeBox}>
                         <Text style={styles.LabelText}>Tipo</Text>
                     </View>
@@ -47,13 +52,12 @@ const FormModal = () => {
                             <View style={transactionType !== "Entrada" ? styles.typeBallActivated : styles.typeBall}/>
                         </TouchableOpacity>
                     </View>
-                    <TouchableOpacity style={styles.ButtonAddForm} onPress={() => {setListTransaction([...listTransaction, {
+                    <TouchableOpacity style={styles.ButtonAddForm} onPress={() => {transactionValidation({
                         description: transactionDescription,
                         value: transactionvalue,
                         type: transactionType,
                         id: new Date().getTime()
-                        }]), 
-                        setFormVisibility(false)}}>
+                        })}}>
                             <Text style={styles.textButtonAdd}>Adicionar</Text>
                     </TouchableOpacity>
                 </View>

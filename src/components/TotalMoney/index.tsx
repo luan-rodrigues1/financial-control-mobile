@@ -11,7 +11,7 @@ const TotalMoney = () =>{
     return (
         <View style={styles.balanceBox}> 
             <Text style={styles.balanceTotal}>Saldo Atual</Text>
-            <Text style={styles.balanceValue}>R$ {balanceVisibility ? "...." : parseFloat(balanceValueTotal).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</Text>
+            <Text style={styles.balanceValue}>R$ {balanceVisibility ? "...." : balanceValueTotal.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</Text>
             <TouchableOpacity
                 onPress={() => visibilitySwitch()}>
                     <Image  source={balanceVisibility ? require("../../../assets/visibility.png") : require("../../../assets/visibilityoff.png")}/>

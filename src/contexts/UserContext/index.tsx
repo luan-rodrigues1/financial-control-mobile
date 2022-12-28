@@ -32,9 +32,14 @@ export interface IProfileContext {
     usingFilter: boolean
     setUsingFilter: React.Dispatch<React.SetStateAction<boolean>>
     typeFilterSwitch: (id: string) => void
-    balanceValueTotal: string
+    balanceValueTotal: number
     filterActivated: string
     setFilterActivated: React.Dispatch<React.SetStateAction<string>>
+    transactionValidation: (newTransaction: ITransaction) => void
+    errorDescription: boolean
+    setErrorDescription: React.Dispatch<React.SetStateAction<boolean>>
+    errorValue: boolean
+    setErrorValue: React.Dispatch<React.SetStateAction<boolean>>
 
 }
 
@@ -51,8 +56,10 @@ const UserProvider = ({children}:IProfileContextProps) => {
     const [transactionvalue, setTransactionValue] = useState<string>("")
     const [listFiltred, setListFiltred] = useState<ITransaction[] | []>([])
     const [usingFilter, setUsingFilter] = useState<boolean>(false)
-    const [balanceValueTotal, setBalanceValueTotal] = useState<string>("")
+    const [balanceValueTotal, setBalanceValueTotal] = useState<number>(0)
     const [filterActivated, setFilterActivated] = useState<string>("Todos")
+    const [errorDescription, setErrorDescription] = useState<boolean>(false)
+    const [errorValue, setErrorValue] = useState<boolean>(false)
 
     const visibilitySwitch = () =>{
         if(balanceVisibility){
@@ -60,6 +67,26 @@ const UserProvider = ({children}:IProfileContextProps) => {
         }
 
         return setBalanceVisibility(true)
+    }
+
+    const transactionValidation = (newTransaction: ITransaction) => {
+
+        if(newTransaction.value.trim() === "" && newTransaction.description.trim() === ""){
+            return (setErrorValue(true), setErrorDescription(true))
+        }
+
+        if(newTransaction.description.trim() === ""){
+            return setErrorDescription(true)
+        }
+
+        if(newTransaction.value.trim() === ""){
+            return setErrorValue(true)
+        }
+
+        return (setListTransaction(
+            [...listTransaction, newTransaction]), 
+            setFormVisibility(false)
+        )
     }
 
     const deleteTransaction = (id: number | null) => {
@@ -80,17 +107,17 @@ const UserProvider = ({children}:IProfileContextProps) => {
 
     useEffect(() => {
         const expenseFilter = listTransaction.filter(element => element.type === "Despesa").reduce((previous, later) => {
-            return parseInt(later.value) + previous
+            return parseFloat(later.value) + previous
         }, 0)
 
         const EntriesFilter = listTransaction.filter(element => element.type === "Entrada").reduce((previous, later) => {
-            return parseInt(later.value) + previous
+            return parseFloat(later.value) + previous
         }, 0)
 
-        const total = EntriesFilter - expenseFilter
+        const totalBalance = EntriesFilter - expenseFilter
+        
+        return setBalanceValueTotal(totalBalance)
 
-    
-        return setBalanceValueTotal(total.toString())
     }, [listTransaction])
 
 
@@ -120,7 +147,12 @@ const UserProvider = ({children}:IProfileContextProps) => {
         typeFilterSwitch,
         balanceValueTotal,
         filterActivated,
-        setFilterActivated
+        setFilterActivated,
+        transactionValidation,
+        errorDescription,
+        setErrorDescription,
+        errorValue,
+        setErrorValue
     }}>{children}</UserContext.Provider>
 
 }

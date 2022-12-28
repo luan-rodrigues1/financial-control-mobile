@@ -131,6 +131,15 @@ const styles = StyleSheet.create({
         position: "absolute",
         left: "85%",
         top: "15%"
+    },
+
+    errorMessage: {
+        fontSize: 11,
+        color: "#ff0000"
+    },
+
+    invisible: {
+        display: "none"
     }
 
 })
