@@ -94,12 +94,10 @@ const UserProvider = ({children}:IProfileContextProps) => {
         if(newTransaction.description.trim() === ""){
             return setErrorDescription("Campo obrigatório")
         }
-        
 
         if(newTransaction.value.trim() === ""){
             return setErrorValue("Campo obrigatório")
         }
-        
 
         if(newTransaction.value.includes(".") || filterPoint.length > 1){
             return setErrorValueFormat("Formato incorreto Ex: 1000,50")
