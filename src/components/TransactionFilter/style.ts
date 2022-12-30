@@ -6,9 +6,9 @@ const styles = StyleSheet.create({
         justifyContent: "space-between",
         marginLeft: "15%",
         marginRight: "15%",
-        marginTop: 20,
-        marginBottom: 25,
-
+        marginTop: "6%",
+        marginBottom: "5%",
+        height: "8%"
     },
 
     boxFilter: {
@@ -45,8 +45,6 @@ const styles = StyleSheet.create({
         fontSize: 12,
         color: "#2C8CF4"
     }
-
-
 
 })
 
