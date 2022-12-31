@@ -1,9 +1,12 @@
 import { StyleSheet } from "react-native";
 
+
 const styles = StyleSheet.create({
     cardListContainer: {
         width: "100%",
-        height: "65%"
+        // height: "65%"
+        height: 560
+
     },
 
     listContainer: {

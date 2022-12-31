@@ -1,4 +1,4 @@
-import { Button, Modal, Text, TextInput, Touchable, TouchableOpacity, View } from "react-native"
+import { Button, Keyboard, Modal, Pressable, Text, TextInput, TouchableOpacity, View } from "react-native"
 import { useContext } from "react"
 import { UserContext } from "../../contexts/UserContext"
 import styles from "./style"
@@ -28,7 +28,7 @@ const FormModal = () => {
                 transparent={true}
                 visible={formVisibility}
             >
-                <View style={styles.modalForm}>
+                <Pressable onPress={Keyboard.dismiss} style={styles.modalForm}>
                     <View style={styles.headerForm}>
                         <Text style={styles.headerText}>Adicione sua transação</Text>
                         <TouchableOpacity style={styles.buttonExit} onPress={() => setFormVisibility(false)}><Text style={styles.buttonExitText}>X</Text></TouchableOpacity>
@@ -60,7 +60,7 @@ const FormModal = () => {
                         })}}>
                             <Text style={styles.textButtonAdd}>Adicionar</Text>
                     </TouchableOpacity>
-                </View>
+                </Pressable>
             </Modal>
         </View>
     )

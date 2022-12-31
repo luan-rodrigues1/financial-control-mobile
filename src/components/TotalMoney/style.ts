@@ -5,7 +5,8 @@ const styles = StyleSheet.create({
     balanceBox: {
         display: "flex",
         width: "100%",
-        height: "21%",
+        // height: "21%",
+        height: 175,
         justifyContent:"space-between",
         backgroundColor: "#2C8CF4",
         borderBottomLeftRadius: 25,
