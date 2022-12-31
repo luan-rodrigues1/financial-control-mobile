@@ -1,4 +1,5 @@
 import { createContext, useEffect, useState } from "react";
+import { Vibration } from "react-native";
 interface IProfileContextProps {
     children: React.ReactNode;
 }
@@ -80,27 +81,27 @@ const UserProvider = ({children}:IProfileContextProps) => {
         const filterPoint = newTransaction.value.split("").filter(el => el === ",")
 
         if(newTransaction.value.trim() === "" && newTransaction.description.trim() === ""){
-            return (setErrorDescription("Campo obrigatório"), setErrorValue("Campo obrigatório"))
+            return (setErrorDescription("Campo obrigatório"), setErrorValue("Campo obrigatório"), Vibration.vibrate())
         }
 
         if(newTransaction.description.trim() === "" && newTransaction.value.includes(".") || filterPoint.length > 1){
-            return (setErrorDescription("Campo obrigatório"), setErrorValueFormat("Formato incorreto Ex: 1000,50"))
+            return (setErrorDescription("Campo obrigatório"), setErrorValueFormat("Formato incorreto Ex: 1000,50"), Vibration.vibrate())
         }
 
         if(newTransaction.value.trim() === "" && newTransaction.value.includes(".") || filterPoint.length > 1){
-            return (setErrorValue("Campo obrigatório"), setErrorValueFormat("Formato incorreto Ex: 1000,50"))
+            return (setErrorValue("Campo obrigatório"), setErrorValueFormat("Formato incorreto Ex: 1000,50"), Vibration.vibrate())
         }
 
         if(newTransaction.description.trim() === ""){
-            return setErrorDescription("Campo obrigatório")
+            return (setErrorDescription("Campo obrigatório"), Vibration.vibrate())
         }
 
         if(newTransaction.value.trim() === ""){
-            return setErrorValue("Campo obrigatório")
+            return (setErrorValue("Campo obrigatório"), Vibration.vibrate())
         }
 
         if(newTransaction.value.includes(".") || filterPoint.length > 1){
-            return setErrorValueFormat("Formato incorreto Ex: 1000,50")
+            return (setErrorValueFormat("Formato incorreto Ex: 1000,50"), Vibration.vibrate())
         }
 
         const shiftPoint = newTransaction.value.replace(",", ".")
