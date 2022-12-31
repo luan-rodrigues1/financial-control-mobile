@@ -1,5 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import { Vibration } from "react-native";
+import Toast from 'react-native-toast-message'
 interface IProfileContextProps {
     children: React.ReactNode;
 }
@@ -107,7 +108,11 @@ const UserProvider = ({children}:IProfileContextProps) => {
         const shiftPoint = newTransaction.value.replace(",", ".")
 
         newTransaction.value = shiftPoint
-
+        Toast.show({
+            type: 'success',
+            text1: 'Transação criada com sucesso!',
+            visibilityTime: 1500
+        });
         return (setListTransaction(
             [...listTransaction, newTransaction]), 
             setFormVisibility(false)
@@ -121,6 +126,12 @@ const UserProvider = ({children}:IProfileContextProps) => {
             setListFiltred(listFiltredDeleteItem)
         }
         const deleteItem = listTransaction.filter(element => element.id !== id)
+
+        Toast.show({
+            type: 'success',
+            text1: 'Transação deletada com sucesso!',
+            visibilityTime: 1500
+        });
         
         return setListTransaction(deleteItem)
     }
