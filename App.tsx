@@ -1,16 +1,20 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
 import Routes from './src/routes';
+import UserProvider from './src/contexts/UserContext';
+import Toast from 'react-native-toast-message';
+import toastConfig from './src/toast';
+
+
 
 export default function App() {
-  return <Routes/>
+  return (
+    <>
+      <UserProvider>    
+        <Routes/>
+      </UserProvider>
+      <Toast config={toastConfig}/>
+    </>
+    )
+
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+

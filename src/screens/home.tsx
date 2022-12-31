@@ -1,9 +1,21 @@
-import { Text, View } from "react-native"
+import {View } from "react-native"
+import TotalMoney from "../components/TotalMoney"
+import FormModal from "../components/FormModal"
+import CardList from "../components/CardList"
+import DeleteModal from "../components/DeleteModal"
+import TransactionFilter from "../components/TransactionFilter"
 
 const Home = () =>{
-    return <View>
-        <Text>home</Text>
-    </View>
+    return (
+        <View>
+            <TotalMoney/>
+            <TransactionFilter/>
+            <FormModal/>
+            <CardList/>
+            <DeleteModal/>
+        </View>
+    )
+
 }
 
 export default Home
