@@ -10,7 +10,7 @@ Onde é possível anotar, listar e ver o total de seus ganhos e gastos de uma fo
 ## Layout 
 ![landing4](https://user-images.githubusercontent.com/106760673/210185844-37423a3d-f54c-4a27-b04a-38a9076c1568.png) ![home4](https://user-images.githubusercontent.com/106760673/210185867-c97615b3-1286-4d88-aa38-ccf8603d50b6.png)
 
-# Tecnologias utilizadas
+# Tecnologias e bibliotecas utilizadas
 - React Native
 - Expo
 - TypeScript
