@@ -1,5 +1,5 @@
-import { Image, Text, View, StyleSheet, Button, TouchableOpacity } from "react-native"
-import { useContext, useState } from "react"
+import { Image, Text, View, TouchableOpacity } from "react-native"
+import { useContext } from "react"
 import { UserContext } from "../../contexts/UserContext"
 import styles from "./style"
 const TotalMoney = () =>{
