@@ -1,5 +1,5 @@
-import { ReactNode, useContext, useState } from "react"
-import { FlatList, Image, StyleSheet, Text, TouchableOpacity, View } from "react-native"
+import { ReactNode, useContext } from "react"
+import { FlatList, Image, Text, TouchableOpacity, View } from "react-native"
 import { UserContext } from "../../contexts/UserContext"
 import NoTransactions from "../NoTransactions"
 import styles from "./style"

@@ -1,4 +1,4 @@
-import { Button, Keyboard, Modal, Pressable, Text, TextInput, TouchableOpacity, View } from "react-native"
+import { Keyboard, Modal, Pressable, Text, TextInput, TouchableOpacity, View } from "react-native"
 import { useContext } from "react"
 import { UserContext } from "../../contexts/UserContext"
 import styles from "./style"

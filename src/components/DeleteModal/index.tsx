@@ -1,4 +1,4 @@
-import { Button, Modal, StyleSheet, Text, TouchableOpacity, View } from "react-native"
+import { Modal, Text, TouchableOpacity, View } from "react-native"
 import { UserContext } from "../../contexts/UserContext"
 import { useContext } from "react"
 import styles from "./style"
