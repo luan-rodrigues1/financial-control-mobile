@@ -15,7 +15,6 @@ Onde é possível anotar, listar e ver o total de seus ganhos e gastos de uma fo
 - Expo
 - TypeScript
 - React Navigation
-- Context API
 - react-native-toast-message
 
 
