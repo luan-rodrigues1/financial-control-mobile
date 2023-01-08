@@ -4,11 +4,11 @@ const styles = StyleSheet.create({
     filterContainer: {
         flexDirection: "row",
         justifyContent: "space-between",
-        marginLeft: "15%",
-        marginRight: "15%",
-        marginTop: "6%",
-        marginBottom: "5%",
-        height: "8%"
+        width: "70%",
+        marginTop: 12,
+        marginRight: 'auto',
+        marginBottom: 12,
+        marginLeft: 'auto',
     },
 
     boxFilter: {
