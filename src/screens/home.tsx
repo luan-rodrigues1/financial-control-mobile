@@ -4,6 +4,7 @@ import FormModal from "../components/FormModal"
 import CardList from "../components/CardList"
 import DeleteModal from "../components/DeleteModal"
 import TransactionFilter from "../components/TransactionFilter"
+import AddButton from "../components/AddButton"
 
 const Home = () =>{
     return (
@@ -13,6 +14,7 @@ const Home = () =>{
             <FormModal/>
             <CardList/>
             <DeleteModal/>
+            <AddButton/>
         </View>
     )
 

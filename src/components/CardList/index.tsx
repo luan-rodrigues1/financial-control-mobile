@@ -48,18 +48,6 @@ const CardList = () =>{
             }}
             >
             </FlatList>}
-            <TouchableOpacity
-                style={[styles.ButtonAdd, styles.shadowProp]}
-                onPress={() => {
-                setFormVisibility(true), 
-                setTransactionType("Entrada"),
-                setTransactionDescription(""), 
-                setTransactionValue(""),
-                setErrorDescription(""),
-                setErrorValue(""),
-                setErrorValueFormat("")}}>
-                    <Text style={styles.textButtonAdd}>Adicionar</Text>
-            </TouchableOpacity>
         </View>
     )
 

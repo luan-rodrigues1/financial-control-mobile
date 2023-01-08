@@ -55,34 +55,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
         borderRadius: 10
-    },
-
-    ButtonAdd: {
-        borderRadius: 40,
-        position: "absolute",
-        top: "90%",
-        left: "32%",
-        backgroundColor: "#2C8CF4",
-        textAlign: "center",
-        paddingLeft: 30,
-        paddingRight: 30,
-        paddingBottom: 11,
-        paddingTop: 11,
-    },
-
-    textButtonAdd: {
-        color: "#ffffff",
-        fontSize: 18,
-        fontWeight: "bold"
-    },
-
-    shadowProp: {
-        shadowColor: "#171717",
-        shadowOffset: {width: -2, height: 4},
-        shadowOpacity: 0.2,
-        shadowRadius: 3,
-        elevation: 20
-    },
+    }
 })
 
 export default styles
