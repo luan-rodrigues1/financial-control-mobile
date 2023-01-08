@@ -79,10 +79,20 @@ const UserProvider = ({children}:IProfileContextProps) => {
         setErrorDescription("")
         setErrorValueFormat("")
 
+        const regex = /[A-Za-z]/.test(newTransaction.value)
+
         const filterPoint = newTransaction.value.split("").filter(el => el === ",")
 
         if(newTransaction.value.trim() === "" && newTransaction.description.trim() === ""){
             return (setErrorDescription("Campo obrigatório"), setErrorValue("Campo obrigatório"), Vibration.vibrate())
+        }
+        
+        if(newTransaction.description.trim() === "" && regex){
+            return (setErrorDescription("Campo obrigatório"), setErrorValueFormat(`Formato incorreto Ex: 1000,50`), Vibration.vibrate())
+        }
+
+        if(newTransaction.value.trim() === "" && regex){
+            return (setErrorValue("Campo obrigatório"), setErrorValueFormat(`Formato incorreto Ex: 1000,50`), Vibration.vibrate())
         }
 
         if(newTransaction.description.trim() === "" && newTransaction.value.includes(".") || filterPoint.length > 1){
@@ -99,6 +109,10 @@ const UserProvider = ({children}:IProfileContextProps) => {
 
         if(newTransaction.value.trim() === ""){
             return (setErrorValue("Campo obrigatório"), Vibration.vibrate())
+        }
+
+        if(regex){
+            return setErrorValueFormat(`Formato incorreto Ex: 1000,50`)
         }
 
         if(newTransaction.value.includes(".") || filterPoint.length > 1){
