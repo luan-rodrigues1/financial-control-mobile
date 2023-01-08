@@ -1,11 +1,6 @@
 import { StyleSheet} from "react-native";
 
 const styles = StyleSheet.create({
-    
-    cardListContainer: {
-        flex: 1,
-    },
-
     listContainer: {
         alignItems: "center",
         flexDirection: "row",
@@ -56,4 +51,3 @@ const styles = StyleSheet.create({
 })
 
 export default styles
-

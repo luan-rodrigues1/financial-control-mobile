@@ -1,23 +1,16 @@
-import { ReactNode, useContext } from "react"
-import { FlatList, Image, Text, TouchableOpacity, View } from "react-native"
+
+import { useContext } from "react"
+import { FlatList, View } from "react-native"
+
 import { UserContext } from "../../contexts/UserContext"
 import NoTransactions from "../NoTransactions"
+import Card from "../Card"
 import styles from "./style"
 
 const CardList = () =>{
-    const {listTransaction, 
-        setDeleteModalVisibility, 
-        setdeleteId, 
+    const {listTransaction,
         usingFilter, 
-        listFiltred, 
-        setFormVisibility, 
-        setTransactionType, 
-        setTransactionDescription, 
-        setTransactionValue, 
-        setErrorDescription, 
-        setErrorValue,
-        formattingCurrency,
-        setErrorValueFormat
+        listFiltred
     } = useContext(UserContext)
 
    return (
@@ -25,41 +18,9 @@ const CardList = () =>{
             {!usingFilter && listTransaction[0] === undefined || usingFilter === true && listFiltred[0] === undefined ? <NoTransactions/> : 
             <FlatList
             data={!usingFilter ? listTransaction.slice().reverse() : listFiltred.slice().reverse()}
-            renderItem={({item}) =>{
-                    return (
-                    <View style={styles.listContainer}>
-                        <View style={styles.cardBox}>
-                            <Image source={item.type === "Despesa" ? require("../../../assets/arrowDown.png") : require("../../../assets/arrowGreen.png")}/>
-                            <View>
-                                <Text style={styles.textCard}>{item.description}</Text>
-                                <Text style={item.type === "Despesa" ? styles.textValueExpense : styles.textValue}>R$ {formattingCurrency(parseFloat(item.value)) as ReactNode}</Text>
-                            </View>
-                        </View>
-                        <TouchableOpacity
-                        style={styles.trashButton}
-                            onPress={()=> {
-                                setdeleteId(item.id),
-                                setDeleteModalVisibility(true)
-                            }}>
-                            <Image source={require("../../../assets/trash.png")}/>
-                        </TouchableOpacity>
-                    </View>
-                )
-            }}
-            >
+            renderItem={({item}) => <Card cardItem={item}/>
+            }>
             </FlatList>}
-            <TouchableOpacity
-                style={[styles.ButtonAdd, styles.shadowProp]}
-                onPress={() => {
-                setFormVisibility(true), 
-                setTransactionType("Entrada"),
-                setTransactionDescription(""), 
-                setTransactionValue(""),
-                setErrorDescription(""),
-                setErrorValue(""),
-                setErrorValueFormat("")}}>
-                    <Text style={styles.textButtonAdd}>Adicionar</Text>
-            </TouchableOpacity>
         </View>
     )
 
