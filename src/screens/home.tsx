@@ -1,4 +1,4 @@
-import {View } from "react-native"
+import {SafeAreaView, View } from "react-native"
 import TotalMoney from "../components/TotalMoney"
 import FormModal from "../components/FormModal"
 import CardList from "../components/CardList"
@@ -8,14 +8,14 @@ import AddButton from "../components/AddButton"
 
 const Home = () =>{
     return (
-        <View>
+        <SafeAreaView style={{flex: 1}}>
             <TotalMoney/>
             <TransactionFilter/>
             <FormModal/>
             <CardList/>
-            <DeleteModal/>
             <AddButton/>
-        </View>
+            <DeleteModal/>
+        </SafeAreaView>
     )
 
 }

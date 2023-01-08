@@ -1,18 +1,24 @@
 import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
-    ButtonAdd: {
-        borderRadius: 40,
+
+    addContainer: {
+        width: "100%",
         position: "absolute",
-        top: "94%",
-        left: "32%",
-        backgroundColor: "#2C8CF4",
+        top: "93%",
         textAlign: "center",
-        paddingLeft: 30,
-        paddingRight: 30,
-        paddingBottom: 11,
-        paddingTop: 11,
-        elevation: 20
+        justifyContent: "center",
+        alignItems: "center",
+    },
+
+    buttonAdd: {
+        width: 130,
+        height: 50,
+        justifyContent: "center",
+        alignItems: "center",
+        borderRadius: 40,
+        backgroundColor: "#2C8CF4",
+        elevation: 20,
     },
 
     textButtonAdd: {
