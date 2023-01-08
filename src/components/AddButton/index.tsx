@@ -11,11 +11,12 @@ const AddButton = () => {
         setTransactionValue, 
         setErrorDescription, 
         setErrorValue,
-        setErrorValueFormat
+        setErrorValueFormat,
+        formVisibility
     } = useContext(UserContext)
 
     return (
-        <View style={styles.addContainer}>
+        <View style={!formVisibility ? styles.addContainer : styles.invisible}>
             <TouchableOpacity
             style={styles.buttonAdd}
                     onPress={() => {

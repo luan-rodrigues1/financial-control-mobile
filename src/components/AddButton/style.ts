@@ -25,6 +25,10 @@ const styles = StyleSheet.create({
         color: "#ffffff",
         fontSize: 18,
         fontWeight: "bold"
+    },
+
+    invisible: {
+        display: "none"
     }
 })
 
