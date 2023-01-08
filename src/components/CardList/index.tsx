@@ -1,5 +1,7 @@
+
 import { useContext } from "react"
 import { FlatList, View } from "react-native"
+
 import { UserContext } from "../../contexts/UserContext"
 import NoTransactions from "../NoTransactions"
 import Card from "../Card"

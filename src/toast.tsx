@@ -12,7 +12,7 @@ const toastConfig = {
             color: "#54C17f"
           }}
         />
-    ),
+    )
 }
 
 export default toastConfig
