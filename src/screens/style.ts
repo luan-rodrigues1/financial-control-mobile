@@ -3,8 +3,11 @@ import { StyleSheet } from "react-native";
 const styles = StyleSheet.create({
 
     landingContainer: {
+        flex: 1,
         backgroundColor: "#ffffff",
-        alignItems: "center"
+        alignItems: "center",
+        borderWidth: 1,
+        borderColor: "orange"
     },
     
     headerContainer: {
