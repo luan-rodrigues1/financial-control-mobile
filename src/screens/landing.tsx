@@ -1,4 +1,4 @@
-import { Button, Image, Text, TouchableOpacity, View } from "react-native"
+import { Button, Image, SafeAreaView, Text, TouchableOpacity, View } from "react-native"
 import { useNavigation } from "@react-navigation/native"
 import styles from "./style"
 
@@ -6,7 +6,7 @@ const Landing = () =>{
     const navigation = useNavigation()
 
     return( 
-        <View style={styles.landingContainer}>
+        <SafeAreaView style={styles.landingContainer}>
             <View style={styles.headerContainer}>
                 <Text style={styles.textTitle}>Controle Financeiro</Text>
                 <Text style={styles.textDescription}>Aplicativo com foco em auxiliar na sua organização financeira</Text>
@@ -18,7 +18,7 @@ const Landing = () =>{
                 </TouchableOpacity>
             </View>
             <Image source={require("../../assets/imglanding.png")}/>
-        </View>
+        </SafeAreaView>
     )
 }
 
