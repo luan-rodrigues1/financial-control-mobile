@@ -5,9 +5,7 @@ const styles = StyleSheet.create({
     landingContainer: {
         flex: 1,
         backgroundColor: "#ffffff",
-        alignItems: "center",
-        borderWidth: 1,
-        borderColor: "orange"
+        alignItems: "center"
     },
     
     headerContainer: {
